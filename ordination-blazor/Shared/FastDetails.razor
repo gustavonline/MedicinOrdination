@@ -16,6 +16,8 @@ else
     <p>Startdato: @fast.startDen</p>
     <p>Slutdato: @fast.slutDen</p>
     <p>Lægemiddel: @fast.laegemiddel</p>
+    <p>Døgndosis: @fast.doegnDosis()</p>
+    <p>Samlet dosis: @fast.samletDosis()</p>
     <p>MorgenDosis: @fast.MorgenDosis</p>
     <p>MiddagDosis: @fast.MiddagDosis</p>
     <p>AftenDosis: @fast.AftenDosis</p>
@@ -25,4 +27,6 @@ else
 @code {
     [Parameter]
     public DagligFast? fast { get; set; }
+    public DateTime Dato { get; set; } = DateTime.Now;
+    
 }
