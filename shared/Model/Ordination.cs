@@ -1,4 +1,4 @@
-namespace shared.Model;
+ namespace shared.Model;
 
 public abstract class Ordination {
     public int OrdinationId { get; set; }

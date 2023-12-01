@@ -53,6 +53,7 @@ public class ApiService
         string json = res.Content.ReadAsStringAsync().Result;
         PN newPN = JsonSerializer.Deserialize<PN>(json)!;
         return newPN;
+
     }
 
     public async Task<DagligFast> OpretDagligFast(int patientId, int laegemiddelId, 
