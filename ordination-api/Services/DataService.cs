@@ -176,8 +176,15 @@ public class DataService
     }
 
     public string AnvendOrdination(int id, Dato dato) {
-        // TODO: Implement!
-        return null!;
+          PN pn = db.PNs.FirstOrDefault(o => o.OrdinationId == id);
+            if (pn == null) {
+                throw new ArgumentException("Ordination blev ikke fundet");
+            }
+            if (pn.givDosis(dato)) {
+                db.SaveChanges();
+                return "Dosis blev givet";
+            }
+            return "Dosis blev ikke givet";
     }
 
     /// <summary>

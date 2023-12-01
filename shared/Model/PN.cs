@@ -18,33 +18,30 @@ public class PN : Ordination {
     /// </summary>
     public bool givDosis(Dato givesDen)
     {
-        
-                return false;
-            }
-
-     
-
-
-
+        if (givesDen.dato >= startDen && givesDen.dato <= slutDen)
+        {
+            dates.Add(givesDen);
+            return true;
+        }
+        return false;
+    }
 
 
     public override double doegnDosis() {
+        HashSet<Dato> unikkeDatoer = new HashSet<Dato>(dates);
 
-       /* if (dates.Count < 2)
-        {
-            // Hvis der er færre end to datoer, kan døgndosis ikke beregnes korrekt.
-            return -1; // Du kan vælge at returnere en særlig værdi for fejl, f.eks. -1.
-        }*/
-
-        // Antal gange ordinationen er anvendt
-        int antalGange = dates.Count();
+        // Antal unikke dage, hvor ordinationen er anvendt
+        int antalUnikkeDage = unikkeDatoer.Count;
 
         // Antal dage mellem første og sidste givning
         int antalDage = (int)(slutDen - startDen).TotalDays + 1;
 
+        // Sikre, at der er nok dage til at foretage en beregning
+        if (antalDage < 1 || antalUnikkeDage < 1)
+            return -1; // Returnerer -1 eller en anden fejlværdi
 
         // Beregning af døgndosis
-        return (antalGange * antalEnheder) / antalDage;
+        return (antalUnikkeDage * antalEnheder) / antalDage;
     }
 
 
