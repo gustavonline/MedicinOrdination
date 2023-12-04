@@ -27,21 +27,20 @@ public class PN : Ordination {
     }
 
 
-    public override double doegnDosis() {
-        HashSet<Dato> unikkeDatoer = new HashSet<Dato>(dates);
-
-        // Antal unikke dage, hvor ordinationen er anvendt
-        int antalUnikkeDage = unikkeDatoer.Count;
+    public override double doegnDosis()
+    {
+        //bør istedet kigge i dates listen og se om ordinations id'et er der for at afgøre om ordinationen er givet
+        int gangeGivet = dates.Count();
 
         // Antal dage mellem første og sidste givning
         int antalDage = (int)(slutDen - startDen).TotalDays + 1;
 
         // Sikre, at der er nok dage til at foretage en beregning
-        if (antalDage < 1 || antalUnikkeDage < 1)
-            return -1; // Returnerer -1 eller en anden fejlværdi
-
+        if (antalDage < 1 || gangeGivet < 1)
+            return -1; // Returner 0, hvis der ikke er nok dage eller ordinationen ikke er anvendt
+        
         // Beregning af døgndosis
-        return (antalUnikkeDage * antalEnheder) / antalDage;
+        return (gangeGivet * antalEnheder) / antalDage;
     }
 
 
