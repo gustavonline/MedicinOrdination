@@ -26,6 +26,6 @@ public class PatientTest
         double vægt = 83;
 
         Patient patient = new Patient(cpr, navn, vægt);
-        Assert.AreEqual("Egon", patient.navn);
+        Assert.AreEqual("Egon", patient.navn); // Denne test fejler altid, da navn altid vil være John men vi forventer Egon
     }
 }

@@ -18,6 +18,11 @@ public class PN : Ordination {
     /// </summary>
     public bool givDosis(Dato givesDen)
     {
+        if (givesDen == null)
+        {
+            throw new ArgumentNullException(nameof(givesDen), "givesDen kan ikke være null");
+        }
+
         if (givesDen.dato >= startDen && givesDen.dato <= slutDen)
         {
             dates.Add(givesDen);
