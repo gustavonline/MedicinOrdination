@@ -7,7 +7,7 @@ using Data;
 using shared.Model;
 
 [TestClass]
-public class ServiceTest
+public class OpretOrdinationTest
 {
     private DataService service;
 
@@ -30,6 +30,7 @@ public class ServiceTest
     [TestMethod]
     public void OpretDagligFast()
     {
+        
         Patient patient = service.GetPatienter().First();
         Laegemiddel lm = service.GetLaegemidler().First();
 
@@ -40,4 +41,33 @@ public class ServiceTest
 
         Assert.AreEqual(2, service.GetDagligFaste().Count());
     }
+    
+    [TestMethod]
+    public void TestAtKodenSmiderEnException()
+    {
+        int ikkeEksisterendePatientId = -1;
+        int ikkeEksisterendeLaegemiddelId = -1;
+
+        Laegemiddel lm = service.GetLaegemidler().First();
+
+        Assert.ThrowsException<ArgumentNullException>(() =>
+            service.OpretDagligFast(ikkeEksisterendePatientId, lm.LaegemiddelId, 2, 2, 1, 0, DateTime.Now, DateTime.Now.AddDays(3)));
+
+        
+    }
+    
+    //tester exceptionel flow i usecase "opret ordinatioN"
+    [TestMethod]
+    public void TestStartDatoEfterSlutDatoException()
+    {
+        Patient patient = service.GetPatienter().First();
+        Laegemiddel lm = service.GetLaegemidler().First();
+
+        DateTime startDato = DateTime.Now.AddDays(3);
+        DateTime slutDato = DateTime.Now; // Startdato er efter slutdato
+
+        Assert.ThrowsException<ArgumentNullException>(() =>
+            service.OpretDagligFast(patient.PatientId, lm.LaegemiddelId, 2, 2, 1, 0, startDato, slutDato));
+    }
+
 }

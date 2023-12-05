@@ -138,6 +138,11 @@ public class DataService
             throw new ArgumentException("Patient eller lægemiddel blev ikke fundet");
             
         }
+        
+        if (startDato > slutDato) {
+            throw new ArgumentException("Startdato er efter slutdato");
+        }
+        
         PN nyPN = new PN(startDato, slutDato, antal, laegemiddel);
         patient.ordinationer.Add(nyPN);
         db.SaveChanges();
@@ -155,6 +160,10 @@ public class DataService
             throw new ArgumentException("Patient eller lægemiddel blev ikke fundet");
         }
         
+        if (startDato > slutDato) {
+            throw new ArgumentException("Startdato er efter slutdato");
+        }
+        
         DagligFast nyDagligFast = new DagligFast(startDato, slutDato, laegemiddel, antalMorgen, antalMiddag, antalAften, antalNat);
         patient.ordinationer.Add(nyDagligFast);
         db.SaveChanges();
@@ -167,6 +176,10 @@ public class DataService
 
         if (patient == null || laegemiddel == null) {
             throw new ArgumentException("Patient eller lægemiddel blev ikke fundet");
+        }
+        
+        if (startDato > slutDato) {
+            throw new ArgumentException("Startdato er efter slutdato");
         }
         
         DagligSkæv nyDagligSkaev = new DagligSkæv(startDato, slutDato, laegemiddel, doser);
