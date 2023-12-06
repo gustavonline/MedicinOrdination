@@ -42,6 +42,12 @@ else
             msg = "Dato mangler.";
             return;
         }
+        
+        if (pn.antalEnheder == pn.samletDosis())
+        {
+            msg = "Ordinationen er allerede givet.";
+            return;
+        }
         string result = await apiService.GivDosisPN(pn, Dato);
         this.msg = result;
     }

@@ -43,7 +43,7 @@ public class OpretOrdinationTest
     }
     
     [TestMethod]
-    public void TestAtKodenSmiderEnException()
+    public void TestOmDagligFastPatientOgLaegemiddelIkkeFindes()
     {
         int ikkeEksisterendePatientId = -1;
         int ikkeEksisterendeLaegemiddelId = -1;
@@ -69,5 +69,5 @@ public class OpretOrdinationTest
         Assert.ThrowsException<ArgumentNullException>(() =>
             service.OpretDagligFast(patient.PatientId, lm.LaegemiddelId, 2, 2, 1, 0, startDato, slutDato));
     }
-
+    
 }

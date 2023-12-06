@@ -188,17 +188,28 @@ public class DataService
         return nyDagligSkaev;
     }
 
-    public string AnvendOrdination(int id, Dato dato) {
-          PN pn = db.PNs.FirstOrDefault(o => o.OrdinationId == id);
-            if (pn == null) {
-                throw new ArgumentException("Ordination blev ikke fundet");
-            }
-            if (pn.givDosis(dato)) {
-                db.SaveChanges();
-                return "Dosis blev givet";
-            }
-            return "Dosis blev ikke givet";
+    public string AnvendOrdination(int id, Dato dato) 
+    {
+        PN pn = db.PNs.FirstOrDefault(o => o.OrdinationId == id);
+        if (pn == null) 
+        {
+            throw new ArgumentException("Ordination blev ikke fundet");
+        }
+
+        // Tjek om ordinationen allerede er givet på den specificerede dato
+        if (pn.dates.Any(d => d.dato == dato.dato))
+        {
+            throw new ArgumentException("Ordinationen er allerede givet på denne dato");
+        }
+
+        if (pn.givDosis(dato)) 
+        {
+            db.SaveChanges();
+            return "Dosis blev givet";
+        }
+        return "Dosis blev ikke givet";
     }
+
 
     /// <summary>
     /// Den anbefalede dosis for den pågældende patient, per døgn, hvor der skal tages hensyn til

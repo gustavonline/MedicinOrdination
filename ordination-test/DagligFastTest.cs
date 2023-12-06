@@ -11,7 +11,8 @@ public class DagligFastTest
     Laegemiddel laegemiddel = new Laegemiddel("TestMiddel", 1, 1, 1, "ml");
 
     [TestMethod]
-    public void TestDoegnDosisNormal()
+    //TestDoegnDosisNormal
+    public void TC1()
     {
 
         // Opret en DagligFast ordination
@@ -27,7 +28,8 @@ public class DagligFastTest
     
     //test metoderne nedenfor tester grænseværdierne for doegnDosis metoden
     [TestMethod]
-    public void TestDoegnDosisMedNulDosis()
+    //TestDoegnDosisMedNulDosis
+    public void TC2()
     {
         // Opret DagligFast med 0 dosis for alle doser (morgen, middag, aften, nat)
         DagligFast ordination = new DagligFast(DateTime.Now, DateTime.Now.AddDays(7), laegemiddel, 0, 0, 0, 0);
@@ -35,7 +37,8 @@ public class DagligFastTest
     }
 
     [TestMethod]
-    public void TestDoegnDosisMedMaksimalDosis()
+    //TestDoegnDosisMedMaksimalDosis
+    public void TC3()
     {
         // Opret DagligFast med maksimal dosis for alle doser (morgen, middag, aften, nat), vi har her valgt at maksimal dosis er 500 da det ikke er opgivet i projektet
         DagligFast ordination = new DagligFast(DateTime.Now, DateTime.Now.AddDays(7), laegemiddel, 100, 100, 100, 100);
@@ -44,7 +47,8 @@ public class DagligFastTest
     }
 
     [TestMethod]
-    public void TestDoegnDosisMedEnDosis()
+    //TestDoegnDosisMedEnDosis
+    public void TC4()
     {
         // Opret DagligFast med dosis kun om morgenen
         DagligFast ordination = new DagligFast(DateTime.Now, DateTime.Now.AddDays(7), laegemiddel, 5, 0, 0, 0);
@@ -53,7 +57,8 @@ public class DagligFastTest
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
-    public void TestDoegnDosisMedNegativDosis()
+    //TestDoegnDosisMedNegativDosis
+    public void TC5()
     {
         // Opret DagligFast med en negativ dosis
         DagligFast ordination = new DagligFast(DateTime.Now, DateTime.Now.AddDays(7), laegemiddel, -1, 0, 0, 0);
