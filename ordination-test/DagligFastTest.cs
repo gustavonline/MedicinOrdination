@@ -52,7 +52,7 @@ public class DagligFastTest
     {
         // Opret DagligFast med dosis kun om morgenen
         DagligFast ordination = new DagligFast(DateTime.Now, DateTime.Now.AddDays(7), laegemiddel, 5, 0, 0, 0);
-        Assert.AreEqual(4, ordination.doegnDosis(), "doegnDosis bør svare til morgen dosis når kun denne er givet (5)");
+        Assert.AreEqual(5, ordination.doegnDosis(), "doegnDosis bør svare til morgen dosis når kun denne er givet (5)");
     }
 
     [TestMethod]

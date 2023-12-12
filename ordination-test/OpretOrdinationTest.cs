@@ -50,7 +50,7 @@ public class OpretOrdinationTest
 
         Laegemiddel lm = service.GetLaegemidler().First();
 
-        Assert.ThrowsException<ArgumentNullException>(() =>
+        Assert.ThrowsException<ArgumentException>(() =>
             service.OpretDagligFast(ikkeEksisterendePatientId, lm.LaegemiddelId, 2, 2, 1, 0, DateTime.Now, DateTime.Now.AddDays(3)));
 
         
@@ -66,7 +66,7 @@ public class OpretOrdinationTest
         DateTime startDato = DateTime.Now.AddDays(3);
         DateTime slutDato = DateTime.Now; // Startdato er efter slutdato
 
-        Assert.ThrowsException<ArgumentNullException>(() =>
+        Assert.ThrowsException<ArgumentException>(() =>
             service.OpretDagligFast(patient.PatientId, lm.LaegemiddelId, 2, 2, 1, 0, startDato, slutDato));
     }
     

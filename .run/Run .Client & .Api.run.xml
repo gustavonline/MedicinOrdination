@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run .Client &amp; .Api" type="CompoundRunConfigurationType">
     <toRun name="ordination-api: ordination_api" type="LaunchSettings" />
-    <toRun name="ordination-blazor: kreddit-app" type="LaunchSettings" />
+    <toRun name="ordination-blazor: ordination-app" type="LaunchSettings" />
     <method v="2" />
   </configuration>
 </component>
